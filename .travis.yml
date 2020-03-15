@@ -1,38 +1,14 @@
 language: python
 python:
   - "3.5"
-# command to install dependencies
 install:
-  #- pip install -r requirements.txt
-  - pip install codecov
   - pip install pandas
   - pip install xlrd
-  - pip install matplotlib
-    #For Coverage Report
-# command to run tests
-#env:
-#  global:
-#    -url='abcd'
-
 script:
-
   - export PYTHONPATH=$PYTHONPATH:$(pwd)
   - cd SkillSet
-  - #python Generating_Test_Case.py
-  - #bash ab.sh
-
-  - #for dir in /home/travis/build/ganeshb15/Automobile/Function/*/; do cd $dir; python Test_*.py; coverage run Test_*.py; coverage html;cd .. ; done
-  - #while read dir ;do   cd $dir;cd .. ;done <Running_Pipline.csv
-  - #for url in $(cat Running_Pipline.csv); do echo $url"/Test*.py";python $(echo $url"/Test*.py");ls;cd ..; done
-  - #python Run_Pipline.py
-  - #bash Running_Function.sh
-  - #echo "Done Done"
   - python skill.py
-  
-    
 
-
-    
 notifications:
   email:
     recipients:

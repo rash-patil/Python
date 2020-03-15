@@ -17,41 +17,18 @@ install:
 script:
 
   - export PYTHONPATH=$PYTHONPATH:$(pwd)
-  - cd Function
+  - cd SkillSet
   - #python Generating_Test_Case.py
   - #bash ab.sh
 
   - #for dir in /home/travis/build/ganeshb15/Automobile/Function/*/; do cd $dir; python Test_*.py; coverage run Test_*.py; coverage html;cd .. ; done
   - #while read dir ;do   cd $dir;cd .. ;done <Running_Pipline.csv
   - #for url in $(cat Running_Pipline.csv); do echo $url"/Test*.py";python $(echo $url"/Test*.py");ls;cd ..; done
-  - python Run_Pipline.py
-  - bash Running_Function.sh
+  - #python Run_Pipline.py
+  - #bash Running_Function.sh
   - #echo "Done Done"
+  - python skill.py
   
-
- # - coverage run 1.py
-branches:
-  only:
-   - master
-after_success:
-    - coveralls
-    - codecov
-    
-
-
-deploy:
-  provider: pages
-  skip_cleanup: true
-  github_token: $GITHUB_TOKEN
-  keep_history: true
-  on:
-    branch: master
-    
-after_deploy:
-  - git add Testing
-  - git commit -m "Updating Execution"
-  - git push
-
     
 
 

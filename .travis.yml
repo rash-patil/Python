@@ -4,6 +4,7 @@ python:
 install:
   - pip install pandas
   - pip install xlrd
+  - pip install openpyxl
 script:
   - export PYTHONPATH=$PYTHONPATH:$(pwd)
   - cd SkillSet

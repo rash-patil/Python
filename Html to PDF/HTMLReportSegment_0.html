@@ -1,0 +1,1470 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="../../Scripts/jquery-3.3.1.js"></script><script src="../../Scripts/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../../Scripts/jquery.dataTables.min.css">
+<style>
+*{
+ margin:0;
+}
+html, body {
+height: 100%;
+margin: 0px,0px,0px,0px;
+padding:0px;
+font-family: Calibri;
+overflow: visible
+}
+.ReportMainContainer {
+background-color: #fcfcfc;
+min-height:98%;
+left:2px;
+right:2px;
+overflow:auto;
+background-color: #fcfcfc;
+}
+.not-active {
+  pointer-events: none;
+  cursor: default;
+  text-decoration:none;
+  color:black;
+}
+.ReportMainHeaderContainer {
+min-height:130px;
+position:absolute;
+top:8px;
+left:8px;
+right:8px;
+}
+.ReportResutcontainer{
+position:absolute;
+top:138px;
+left:18px;
+right:18px;
+bottom:30px;
+overflow: auto;
+}
+.ReportMainFooterContainer {
+min-height:30px;
+position:absolute;
+bottom:0;
+left:8px;
+right:8px;
+}
+.overlay {
+position:absolute;
+display:none;
+top:0;
+right:0;
+bottom:0;
+left:0;
+background:rgba(0, 0, 0, 0.1);
+z-index:9999;
+}
+.close{
+position:absolute;
+font-size:20px;
+right:10px;
+width:20px;
+height:20px;
+cursor:pointer;
+display: inline-block;
+}
+.popup {
+position:absolute;
+width:48%;
+height:50%;
+top:32%;
+left:32%;
+text-align:left;
+overflow: auto;
+}
+.popupWraper {
+position:absolute;
+width:50%;
+height:60%;
+top:25%;
+left:30%;
+border-radius: 10px;
+box-shadow: 0px 0px 10px 0px black;
+background:rgb(240,240,240);
+}
+.popupWraper h4 {
+font-size:25px;
+height:50px;
+line-height:50px;
+color: #000000;
+background:#b5cfd2;
+border-radius:10px 10px 0px 0px;
+}  
+.popupScreenComparison {
+position:absolute;
+width:60%;
+height:65%;
+top:20%;
+left:22%;
+text-align:left;
+overflow: auto;
+}
+.popupWraperScreenCompare {
+position:absolute;
+width:64%;
+height:97%;
+top:0%;
+left:20%;
+border-radius: 10px;
+box-shadow: 0px 0px 10px 0px black;
+background:rgb(240,240,240);
+}
+.popupWraperScreenCompare h4 {
+font-size:25px;
+height:50px;
+line-height:50px;
+color: #000000;
+background:#b5cfd2;
+border-radius:10px 10px 0px 0px;
+}
+
+table.imagetable {
+font-family: verdana,arial,sans-serif;
+font-size:11px;
+color:#333333;
+border-width: 1px;
+border-color: #999999;
+width: 100%;
+}
+table.imagetable th {
+background:#b5cfd2 url('cell-blue.jpg');
+border-width: 1px;
+padding: 8px;
+border-style: solid;
+border-color: #999999;
+}
+table.imagetable td {
+text-align: left;
+border-width: 1px;
+padding: 8px;
+border-style: solid;
+border-color: #999999;
+}
+.wrapper{
+	overflow : hidden;
+	width : 100%
+	margin-left : 10px;
+	margin-top : 40px;
+}
+#tableData{
+	margin-left : 20px;
+	position:relative;
+	width:60%;
+	margin-top : 20px;
+	float : left ;
+}
+.chartContainer{
+	position:relative;
+	top:20;
+	width:30%;
+	margin-top : 10px;
+	float : right ;
+}
+.domainSummary{
+	position:relative;
+	left:0;
+	margin-top : 20px;
+	margine-left : 40px;
+	margin-bottom :20px;
+	width: 100%;
+}
+#summaryTable{
+	position:relative;
+	left:0;
+	margin-top : 20px;
+	margine-left : 40px;
+	width: 100%;
+}
+.detailedReport{
+	position:relative;
+	margin-left : 0px;
+	margin-right : 0px;
+	margin-bottom : 0px;
+}
+
+#HeaderTable{
+    position:relative;
+	width:100%;
+}
+.Header
+{
+    color:black;
+    font-family:calibri;
+    font-size:16px;
+    text-align:center;
+    background-color:#42bff4;
+	
+}
+.subHeader
+{
+    color:black;
+    font-family:calibri;
+    font-size:14px;
+    text-align:center;
+	
+	
+}
+.data
+{
+    color:black;
+    font-family:calibri;
+    font-size:12px;
+    text-align:center;
+	
+}
+.reportHeader
+{
+	white-space: pre-line;
+}
+.headerRow
+{
+	border: 0;
+}
+.headerTable
+{
+	margin-left : 5px;
+	border: 1px solid black;
+}
+.wrapper2{
+	overflow : hidden;
+	width : 100%;
+	position:relative;
+	margin-left : 10px;
+	margin-top : 20px;
+}
+.tableData2{
+	top : 50;
+	position:relative;
+	width:60%;
+	float : left ;
+	margin-left:10px;
+}
+.summaryTable2{
+	position:relative;
+	margin-top : 20px;
+	margin-left : 10px;
+	width: 100%;
+}
+.testPackData
+{
+	margin-left : 5px;
+	margin-top : 40px;
+	border:1px solid black;
+}
+
+
+
+ul, #myUL {
+  list-style-type: none;
+  text-align: left;
+}
+
+#myUL {
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+
+.caret {
+  cursor: pointer;
+  -webkit-user-select: none; /* Safari 3.1+ */
+  -moz-user-select: none; /* Firefox 2+ */
+  -ms-user-select: none; /* IE 10+ */
+  user-select: none;
+  text-align: left;
+}
+
+.caret::before {
+  content: "\25B6";
+  color: black;
+  display: inline-block;
+  margin-right: 6px;
+}
+.recoveryBlock{
+ background-color:#9370DB;
+}
+.caret-down::before {
+  -ms-transform: rotate(90deg); /* IE 9 */
+  -webkit-transform: rotate(90deg); /* Safari */'
+  transform: rotate(90deg);  
+}
+
+.nested {
+  display: none;
+  text-align: left;
+}
+
+.active {
+  display: block;
+  text-align: left;
+}
+.pass{
+color:#006400;
+}
+.Fail{
+color:red;
+}
+.backgroundFail{
+background-color:#ff4d4d;
+}
+.backgroundPass{
+background-color:#bfff80;
+}
+.InProgress{
+color:#000099;
+}
+th {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  border: 1px solid black;
+  background-color:#42bff4;
+}
+a:link {
+  color: blue;
+}
+
+
+a:visited {
+ color: blue;
+}
+
+
+a:hover {
+  color: hotpink;
+}
+
+
+a:active {
+  color: violet;
+}
+</style>
+<script type="text/javascript" language="JavaScript">
+
+var goldenImageCanvasMap = new Map();
+var actualImageCanvasMap = new Map();
+var goldenImageMap = new Map();
+var actualImageMap = new Map();
+var screenComparisonResultMap = new Map();
+var roiResultsMap = new Map();
+var roiMap = new Map();
+var roiParamsArray = new Array();
+
+var canvasWidth = 400;
+var canvasHeight = 250;
+
+function showScreenComparisons(screenComparisons) {
+var screenComparisonCount = 0;
+var textComparisonCount = 0;
+var clusterComparisonCount = 0;
+roiMap.clear();
+roiParamsArray = [];
+screenComparisonResultMap.clear();
+goldenImageCanvasMap.clear();
+actualImageCanvasMap.clear();
+roiResultsMap.clear();
+goldenImageMap.clear();
+actualImageMap.clear();
+screenComparisonResultMap.clear();
+
+var ScreenComparisonMainTableTemplete='<table class="imagetable" id="tableScreenCompareId">#TABLE_DATA</table>';                                                                                
+
+var ScreenComparisonTableHeaderTemplete='<tr><th>Expected Result</th><th>Actual Result</th><th>Result</th><th>Match Percentile</th></tr>';
+var TextComparisonTableHeaderTemplate = '<tr><th>Text/Variable Comparisons</th></tr>';
+var clusterComparisonHeaderTemplate = '<tr><th colspan = "2">Golden Image</th><th colspan = "2">Result</th></tr>';
+
+var FailedTestCaseScreenShotTableHeaderTemplete='<tr><th>Failed Test Case Screen Shot</th></tr>';
+var FailedTestCaseScreenShotTableRowTemplete='<tr><td><Center><img src="#Failed_Test_Case_Screen_Shot" alt="No Failed Test Case Screen Shot Present" border=3 height=150 width=300></img></Center></td></tr>';
+var textComparisonRowTemplate = '<tr><td colspan = "4"><center>#TextComparisonResult</center></td></tr>';
+var screenComparisonsArray = screenComparisons.split(/\\;/);
+var imageComparisonRowTemplate = '<tr><td><Center><canvas id="#Golden_Screen" height = 250 width = 400></canvas></Center></td><td><Center><canvas id="#Actual_Screen" height = 250 width = 400></img></Center></td><td>#Compare_Result</td><td><Center>#matchPercentile</Center></td></tr>';
+var rowTemplateWithTwoCol = '<tr><td colspan = "2"><Center><canvas id="#Golden_Screen" height = 250 width = 400></canvas></Center></td><td colspan = "2">#Compare_Result</td></tr>';
+
+var screenComparisonRowTemplate = ""
+	
+
+screenComparisonsArray.forEach(function(arrayItem,i){
+	var resultRow = "";
+	var screenComparison = arrayItem.split(/\\,/);
+	if(screenComparison.length == 1)
+	{
+		textComparisonCount++;
+		resultRow = textComparisonRowTemplate;
+		resultRow = resultRow.replace("#TextComparisonResult",screenComparison[0]);
+	}
+	else if(screenComparison.length == 2 || screenComparison.length == 3){
+		clusterComparisonCount++;
+		var goldenImageCanvas = "Canvas_Golden_" + i;
+		var goldenImage = new Image();
+		goldenImage.src = screenComparison[0];
+		goldenImageMap.set(i,goldenImage);
+		resultRow = rowTemplateWithTwoCol;
+		resultRow = resultRow.replace("#Golden_Screen",goldenImageCanvas);
+		goldenImageCanvasMap.set(i,goldenImageCanvas);
+		resultRow = resultRow.replace("#Compare_Result",screenComparison[1]);
+		var comparisonResultsArray = screenComparison[1].split(/;/);
+		roiResultsMap.set(i,comparisonResultsArray);
+		
+		if(screenComparison.length == 3){
+			var roiList = screenComparison[2];
+			var roiParams = roiList.split(/:/);
+			var roiParamArr = new Array();
+			roiParams.forEach(function(arrayItem,i){
+				var roiValues = arrayItem.split(/;/);
+				roiParamArr.push(roiValues);
+			});
+			roiMap.set(i,roiParamArr);
+			screenComparisonResultMap.set(i,screenComparison[2]);
+		}
+	}
+	else
+	{
+		screenComparisonCount++;
+		var goldenImageCanvas = "Canvas_Golden_" + i;
+		var actualImageCanvas = "Canvas_Actual_" + i;
+		resultRow = imageComparisonRowTemplate;
+		resultRow = resultRow.replace("#Golden_Screen",goldenImageCanvas);
+		goldenImageCanvasMap.set(i,goldenImageCanvas);
+		var goldenImage = new Image();
+		goldenImage.src = screenComparison[0];
+		goldenImageMap.set(i,goldenImage);
+		resultRow = resultRow.replace("#Actual_Screen",actualImageCanvas);
+		actualImageCanvasMap.set(i,actualImageCanvas);
+		var actualImage = new Image();
+		actualImage.src = screenComparison[1];
+		actualImageMap.set(i,actualImage);
+		var comparisonResultsArray = screenComparison[2].split(/;/);
+		roiResultsMap.set(i,comparisonResultsArray);
+		screenComparisonResultMap.set(i,screenComparison[2]);
+		resultRow = resultRow.replace("#Compare_Result",screenComparison[2]);
+		resultRow = resultRow.replace("#matchPercentile",screenComparison[3]);
+		
+		if(screenComparison.length == 5){
+			var roiList = screenComparison[4];
+			var roiParams = roiList.split(/:/);
+			var roiParamArr = new Array();
+			roiParams.forEach(function(arrayItem,i){
+				var roiValues = arrayItem.split(/;/);
+				roiParamArr.push(roiValues);
+			});
+			roiMap.set(i,roiParamArr);
+			screenComparisonResultMap.set(i,screenComparison[2]);
+		}
+	}
+	screenComparisonRowTemplate = screenComparisonRowTemplate + resultRow;
+});
+if(screenComparisonCount >= 1){
+		screenComparisonRowTemplate = ScreenComparisonTableHeaderTemplete + screenComparisonRowTemplate;
+}
+else if(clusterComparisonCount >= 1){
+	screenComparisonRowTemplate = clusterComparisonHeaderTemplate + screenComparisonRowTemplate;
+}
+else{
+	screenComparisonRowTemplate = TextComparisonTableHeaderTemplate + screenComparisonRowTemplate;
+}
+ScreenComparisonMainTableTemplete = ScreenComparisonMainTableTemplete.replace("#TABLE_DATA",screenComparisonRowTemplate);
+
+var div1 = document.getElementById('screenComparePopupId');
+var j = 0;
+div1.innerHTML = ScreenComparisonMainTableTemplete;
+var noOfComparisons = goldenImageCanvasMap.size;
+var count = 0;
+var img1;
+var img2;
+var c1;
+var ctx1;
+var c2;
+var ctx2;
+goldenImageCanvasMap.forEach(function(value, key, mapObj){
+	var c1 = document.getElementById(goldenImageCanvasMap.get(key));
+	var ctx1=c1.getContext("2d");
+	goldenImageMap.get(key).onload = function(){
+			screenResolutionX=goldenImageMap.get(key).width;
+			screenResolutionY=goldenImageMap.get(key).height;
+			ctx1.drawImage(goldenImageMap.get(key),0,0,canvasWidth,canvasHeight);
+				if(roiMap.has(key)){
+					var xFactor = screenResolutionX/canvasWidth;
+					var yFactor = screenResolutionY/canvasHeight;
+					var roiParamArr = roiMap.get(key);
+					roiParamArr.forEach(function(arrayItem,i){
+					var strResult = roiResultsMap.get(key)[i];
+					var strokeStyle = 'green';
+					if(!strResult.toUpperCase().includes("PASS")){
+						strokeStyle = 'red';
+					}
+					var roiParamVal = arrayItem;
+					var x1= roiParamVal[0];
+					var y1 = roiParamVal[1];
+					var wid1 = roiParamVal[2];
+					var hei1 = roiParamVal[3];
+					var x11 = Math.round(x1/xFactor);
+					var y11 = Math.round(y1/yFactor);
+					var width1 = Math.round(wid1/xFactor);
+					var height1 = Math.round(hei1/yFactor);
+					ctx1.beginPath();
+					ctx1.rect(x11,y11,width1,height1);
+					ctx1.lineWidth = 2;
+					ctx1.strokeStyle = strokeStyle;
+					ctx1.stroke();
+				
+					});
+			}
+			
+	}
+	
+	if(actualImageCanvasMap.has(key)){
+		var c2 = document.getElementById(actualImageCanvasMap.get(key));
+		var ctx2=c2.getContext("2d");
+		actualImageMap.get(key).onload = function(){
+			screenResolutionX=actualImageMap.get(key).width;
+			screenResolutionY=actualImageMap.get(key).height;
+			ctx2.drawImage(actualImageMap.get(key),0,0,canvasWidth,canvasHeight);
+			if(roiMap.has(key)){
+				var xFactor = screenResolutionX/canvasWidth;
+				var yFactor = screenResolutionY/canvasHeight;
+				var roiParamArr = roiMap.get(key);
+				roiParamArr.forEach(function(arrayItem,i){
+					var strResult = roiResultsMap.get(key)[i];
+					var strokeStyle = 'green';
+					if(!strResult.toUpperCase().includes("PASS")){
+						strokeStyle = 'red';
+					}
+					var roiParamVal = arrayItem;
+					var a1= roiParamVal[0];
+					var b1 = roiParamVal[1];
+					var wid2 = roiParamVal[2];
+					var hei2 = roiParamVal[3];
+					var a11 = Math.round(a1/xFactor);
+					var b11 = Math.round(b1/yFactor);
+					var width2 = Math.round(wid2/xFactor);
+					var height2 = Math.round(hei2/yFactor);
+					ctx2.beginPath();
+					ctx2.rect(a11,b11,width2,height2);
+					ctx2.lineWidth = 2;
+					ctx2.strokeStyle = strokeStyle;
+					ctx2.stroke();
+				});
+			}
+		}
+	}
+});
+
+document.getElementById('screenCompareOverlayId').style.display = 'block';	
+}
+
+function hideScreenComparisons(){ 
+var div1 = document.getElementById('screenComparePopupId');
+while (div1.firstChild) {
+    div1.removeChild(div1.firstChild);
+}
+document.getElementById('screenCompareOverlayId').style.display = 'none';
+}
+
+window.onload = function () {
+
+var toggler = document.getElementsByClassName("caret");
+var i;
+
+for (i = 0; i < toggler.length; i++) {
+  toggler[i].addEventListener("click", function() {
+    this.parentElement.querySelector(".nested").classList.toggle("active");
+    this.classList.toggle("caret-down");
+  });
+}
+
+}
+ 
+		
+		
+</script><script>
+        
+        function bindEvent(element, eventName, eventHandler) {
+            if (element.addEventListener) {
+                element.addEventListener(eventName, eventHandler, false);
+            } else if (element.attachEvent) {
+                element.attachEvent('on' + eventName, eventHandler);
+            }
+        }
+       
+        var sendMessage = function (msg) {
+            
+            window.parent.postMessage(msg, '*');
+			
+        };
+        var results = document.getElementById('results');
+		
+           
+        
+     
+    </script><script>
+
+$(document).ready(function() {
+      $('#DetailedTable').DataTable( {
+	   "stateSave": true,
+	   "stateDuration": -1,
+	    "lengthMenu": [[5,10, 25, 50,100,200,500,1000, -1], [5,10, 25, 50,100,200,500,1000,"All"]],
+        "dom": '<lf<>ip>',
+		columnDefs: [ {
+            targets: [ 0 ],
+            orderData: [ 0, 1 ]
+        }, {
+            targets: [ 1 ],
+            orderData: [ 1, 0 ]
+        }, {
+            targets: [ 4 ],
+            orderData: [ 4, 0 ]
+        } ],
+		  "language": {
+            "lengthMenu": "Test Case _MENU_  per page",
+            "zeroRecords": "Nothing found",
+            "info": "Showing page _PAGE_ of _PAGES_",
+            "infoEmpty": "No records available",
+            "infoFiltered": "(filtered from _MAX_ total records)"
+        },
+		"pagingType": "full_numbers"
+    } );
+	 $('#DetailedTable tfoot th').each( function () {
+        var title = $(this).text();
+       $(this).html( '<input type="text" placeholder="Search '+title+'" size="10">' );
+    } );
+ 
+    // DataTable
+    var table = $('#DetailedTable').DataTable();
+ 
+    // Apply the search
+    table.columns().every( function () {
+        var that = this;
+ 
+        $( 'input', this.footer() ).on( 'keyup change clear', function () {
+            if ( that.search() !== this.value ) {
+                that
+                    .search( this.value )
+                    .draw();
+            }
+        } );
+    } );
+	// Go to Page
+	$('#myBtn').on( 'click', function () {
+var info = table.page.info();
+	var pageNumber=$('#myInput').val();
+	var temp_page = parseInt(pageNumber)-1;
+	
+	if(pageNumber>info.pages||pageNumber<=0){
+	alert("Invalid Page Number");
+	}
+	else{
+	table.page(temp_page).draw( false );
+	}
+	
+} );
+} );
+		
+</script>
+</head>
+<body>
+<div class="overlay" id="screenCompareOverlayId">
+<div class="popupWraperScreenCompare">
+<div onclick="hideScreenComparisons()" class="close">✖</div>
+<center>
+<h2>Result</h2>
+</center>
+</div>
+<div class="popupScreenComparison" id="screenComparePopupId"></div>
+</div>
+<div class="overlay" id="overlayid">
+<div class="popupWraper">
+<div onclick="hideLog()" class="close">✖</div>
+<center>
+<h2>Log</h2>
+</center>
+</div>
+<div class="popup" id="popupid"></div>
+</div>
+<div class="detailedReport">
+<input type="number" id="myInput"><button type="button" id="myBtn">GoTo Page</button>
+<table align="bottom" class="table table-bordered table-hover table-condensed" border="1" width="100%" rowspan="8" cellpadding="0" cellspacing="0" id="DetailedTable">
+<thead>
+<tr class="subHeader">
+<th>Test Pack</th><th>Iteration ID</th><th>Test ID</th><th>Test Objective</th><th>Start Time</th><th>End Time</th><th>Total Time</th><th>Results</th><th>View Results</th><th>Test Case Details</th>
+</tr>
+</thead>
+<tfoot>
+<tr class="subHeader" bgcolor="white">
+<th>Test Pack</th><th>Iteration ID</th><th>Test ID</th><th>Test Objective</th><th>Start Time</th><th>End Time</th><th>Total Time</th><th>Results</th><th>View Results</th><th>Test Case Details</th>
+</tr>
+</tfoot>
+<tbody>
+<tr class="data">
+<td>Demo Test Pack</td><td>1</td><td>FNC-AIR-01-0165</td><td>FNC-AIR-01-0165:To Verify Air conditioner Temperature 28.5,When Driver Temperature AC message Transmit.</td><td>2020.04.08 at 17:40:49</td><td>2020.04.08 at 17:40:55</td><td>00:00:06</td><td style="color: green;"><b>Pass</b></td><td><a onclick="sendMessage('file:/D:/KITE_ASSETS/KITE_GOLDEN_IMAGES/Driver_AC_28_5_Temp.png\\,file:/D:/KITE_ASSETS/KITE_ACTUAL_IMAGES/ActualImages_08_04_20/FNC-AIR-01-0165_08_04_20_174022/Driver_AC_28_5_Temp_08_04_20_17_40_54_410.png\\,\n ROI1:Pass: Section Found on Screen;\n\n ROI2:Pass: Section Found on Screen\\,\r\
+ ROI1:100;\r\
+\r\
+ ROI2:100\\,1059;5;95;53:332;2;101;58')" href="javascript:void(0);">
+			View Results
+		</a></td><td>
+<ul id="myUL">
+<li>
+<span class="caret">FNC-AIR-01-0165:To Verify Air conditioner Temperature 28.5,When Driver Temperature AC message Transmit.</span>
+<ul class="nested">
+<li>
+<span class="caret backgroundPass">Switch Control to DUT</span>
+<ul class="nested">
+<li class="pass">(SET_DEVICE, Success::Command executed successfully)</li>
+<li class="pass">(WAIT, Success::Command execution successful!!)</li>
+</ul>
+</li>
+<li>
+<span class="caret backgroundPass">Go to Homescreen</span>
+<ul class="nested">
+<li class="pass">(SET_HOME, Success::Command executed successfully)</li>
+<li class="pass">(WAIT, Success::Command execution successful!!)</li>
+</ul>
+</li>
+<li>
+<span class="caret backgroundPass">Ignition ON </span>
+<ul class="nested">
+<li class="pass">(SEND_CAN_MSG_PERIODIC_BY_ID, Success::CAN ID : 92F81018 08 00 00 00 00 00 00 00, VectorXL CAN DATA is Transmitted, VectorXL CAN DATA Queue is Flushed,No Error)</li>
+<li class="pass">(WAIT, Success::Command execution successful!!)</li>
+</ul>
+</li>
+<li>
+<span class="caret backgroundPass">SET Driver AC Temperature to 28.5</span>
+<ul class="nested">
+<li class="pass">(SEND_CAN_MSG_PERIODIC_BY_ID, Success::CAN ID : 8EF97B51 00 E4 00 00 00 80 00 08, VectorXL CAN DATA is Transmitted, VectorXL CAN DATA Queue is Flushed,No Error)</li>
+<li class="pass">(WAIT, Success::Command execution successful!!)</li>
+</ul>
+</li>
+<li>
+<span class="caret backgroundPass">SET Driver AC Feedback</span>
+<ul class="nested">
+<li class="pass">(SEND_CAN_MSG_PERIODIC_BY_ID, Success::CAN ID : 8EF98751 00 00 00, VectorXL CAN DATA is Transmitted, VectorXL CAN DATA Queue is Flushed,No Error)</li>
+<li class="pass">(WAIT, Success::Command execution successful!!)</li>
+<li class="pass">(SEND_CAN_MSG_PERIODIC_BY_ID, Success::CAN ID : 8EF98751 80 00 00, VectorXL CAN DATA is Transmitted, VectorXL CAN DATA Queue is Flushed,No Error)</li>
+</ul>
+</li>
+<li>
+<span class="caret backgroundPass">Validate Driver AC 28.5 Temperature</span>
+<ul class="nested">
+<li class="pass">(IMAGE_GRAB, Success::Command executed successfully)</li>
+<li class="pass">(COMPARE_SCREEN_SECTION, Success::
+ ROI1:Pass: Section Found on Screen;
+
+ ROI2:Pass: Section Found on Screen)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="data">
+<td>Demo Test Pack</td><td>1</td><td>FNC-SYS-01-0109</td><td>FNC-SYS-01-0109:To varify to system volume screen in Indicator 3</td><td>2020.04.08 at 17:40:56</td><td>2020.04.08 at 17:41:15</td><td>00:00:19</td><td style="color: green;"><b>Pass</b></td><td><a onclick="sendMessage('file:/D:/KITE_ASSETS/KITE_GOLDEN_IMAGES/SystemVolumeMin.png\\,file:/D:/KITE_ASSETS/KITE_ACTUAL_IMAGES/ActualImages_08_04_20/FNC-SYS-01-0109_08_04_20_174060/SystemVolumeMin_08_04_20_17_41_11_551.png\\,\n ROI1:Pass: Section Found on Screen\\,\r\
+ ROI1:100\\,665;157;71;77\\;file:/D:/KITE_ASSETS/KITE_GOLDEN_IMAGES/SystemVolume.png\\,file:/D:/KITE_ASSETS/KITE_ACTUAL_IMAGES/ActualImages_08_04_20/FNC-SYS-01-0109_08_04_20_174060/SystemVolume_08_04_20_17_41_15_195.png\\,\n ROI1:Pass: Section Found on Screen\\,\r\
+ ROI1:100\\,665;157;71;77')" href="javascript:void(0);">
+			View Results
+		</a></td><td>
+<ul id="myUL">
+<li>
+<span class="caret">FNC-SYS-01-0109:To varify to system volume screen in Indicator 3</span>
+<ul class="nested">
+<li>
+<span class="caret backgroundPass">Switch Control to DUT</span>
+<ul class="nested">
+<li class="pass">(SET_DEVICE, Success::Command executed successfully)</li>
+<li class="pass">(WAIT, Success::Command execution successful!!)</li>
+</ul>
+</li>
+<li>
+<span class="caret backgroundPass">Go to Homescreen</span>
+<ul class="nested">
+<li class="pass">(SET_HOME, Success::Command executed successfully)</li>
+<li class="pass">(WAIT, Success::Command execution successful!!)</li>
+</ul>
+</li>
+<li>
+<span class="caret backgroundPass">Launch Setting Application</span>
+<ul class="nested">
+<li class="pass">(CLICK, Success::Clicked on co-ordinates X=1100, Y=250)</li>
+<li class="pass">(WAIT, Success::Command execution successful!!)</li>
+</ul>
+</li>
+<li>
+<span class="caret backgroundPass">Go to System Setting</span>
+<ul class="nested">
+<li class="pass">(CLICK, Success::Clicked on co-ordinates X=141, Y=223)</li>
+<li class="pass">(WAIT, Success::Command execution successful!!)</li>
+</ul>
+</li>
+<li>
+<span class="caret backgroundPass">Go to System Volume Setting</span>
+<ul class="nested">
+<li class="pass">(CLICK, Success::Clicked on co-ordinates X=141, Y=380)</li>
+<li class="pass">(WAIT, Success::Command execution successful!!)</li>
+</ul>
+</li>
+<li>
+<span class="caret backgroundPass">Set Volume Level to Low</span>
+<ul class="nested">
+<li class="pass">(LONG_PRESS, Success::Long-pressed co-ordinates (X1=600,Y1=280))</li>
+<li class="pass">(WAIT, Success::Command execution successful!!)</li>
+</ul>
+</li>
+<li>
+<span class="caret backgroundPass">Validate Minus Button on Sound Setting is Greyed Out</span>
+<ul class="nested">
+<li class="pass">(CAPTURE_SCREEN, Success::Command executed successfully)</li>
+<li class="pass">(WAIT, Success::Command execution successful!!)</li>
+<li class="pass">(COMPARE_SCREEN_SECTION, Success::
+ ROI1:Pass: Section Found on Screen)</li>
+</ul>
+</li>
+<li>
+<span class="caret backgroundPass">Set Volume Level to High for Short Duration</span>
+<ul class="nested">
+<li class="pass">(CLICK, Success::Clicked on co-ordinates X=1160, Y=280)</li>
+<li class="pass">(WAIT, Success::Command execution successful!!)</li>
+</ul>
+</li>
+<li>
+<span class="caret backgroundPass">Validate Minus Button on Sound Setting is Enabled</span>
+<ul class="nested">
+<li class="pass">(CAPTURE_SCREEN, Success::Command executed successfully)</li>
+<li class="pass">(WAIT, Success::Command execution successful!!)</li>
+<li class="pass">(COMPARE_SCREEN_SECTION, Success::
+ ROI1:Pass: Section Found on Screen)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="data">
+<td>Demo Test Pack</td><td>1</td><td>FNC-DATA-01-0597</td><td>FNC-DATA-01-0597 : To verify the selection focus when song is selected from top of the list</td><td>2020.04.08 at 17:41:17</td><td>2020.04.08 at 17:42:35</td><td>00:01:18</td><td style="color: green;"><b>Pass</b></td><td><a onclick="sendMessage('file:/D:/KITE_ASSETS/KITE_GOLDEN_IMAGES/Second_Song_is_Playing_Song_List.png\\,file:/D:/KITE_ASSETS/KITE_ACTUAL_IMAGES/ActualImages_08_04_20/FNC-DATA-01-0597_08_04_20_1741757/Second_Song_is_Playing_Song_List_08_04_20_17_42_14_290.png\\,\n ROI1:PASS: Text on Image is Similar;\n\n ROI2:PASS: Text on Image is Similar;\n\n ROI3:PASS: Text on Image is Similar\\,\r\
+ ROI1:100.0;\r\
+\r\
+ ROI2:100.0;\r\
+\r\
+ ROI3:100.0\\,596;178;593;216:383;642;162;48:705;632;119;64\\;file:/D:/KITE_ASSETS/KITE_GOLDEN_IMAGES/Second_Song_is_Playing_Song_List.png\\,file:/D:/KITE_ASSETS/KITE_ACTUAL_IMAGES/ActualImages_08_04_20/FNC-DATA-01-0597_08_04_20_1741757/Second_Song_is_Playing_Song_List_08_04_20_17_42_14_290.png\\,\n ROI1:Pass: Section Found on Screen;\n\n ROI2:Pass: Section Found on Screen;\n\n ROI3:Pass: Section Found on Screen;\n\n ROI4:Pass: Section Found on Screen\\,\r\
+ ROI1:100;\r\
+\r\
+ ROI2:100;\r\
+\r\
+ ROI3:100;\r\
+\r\
+ ROI4:100\\,327;66;77;85:615;634;74;61:836;637;79;61:1025;642;74;53\\;file:/D:/KITE_ASSETS/KITE_GOLDEN_IMAGES/Focus_Place_on_First_Place_All_Song_List.png\\,file:/D:/KITE_ASSETS/KITE_ACTUAL_IMAGES/ActualImages_08_04_20/FNC-DATA-01-0597_08_04_20_1741757/Focus_Place_on_First_Place_All_Song_List_08_04_20_17_42_33_605.png\\,\n ROI1:Pass: Section Found on Screen\\,\r\
+ ROI1:100\\,460;136;1153;85\\;file:/D:/KITE_ASSETS/KITE_GOLDEN_IMAGES/Focus_Place_on_First_Place_All_Song_List.png\\,file:/D:/KITE_ASSETS/KITE_ACTUAL_IMAGES/ActualImages_08_04_20/FNC-DATA-01-0597_08_04_20_1741757/Focus_Place_on_First_Place_All_Song_List_08_04_20_17_42_33_605.png\\,\n ROI1:PASS: Text on Image is Similar\\,\r\
+ ROI1:100.0\\,489;141;623;61')" href="javascript:void(0);">
+			View Results
+		</a></td><td>
+<ul id="myUL">
+<li>
+<span class="caret">FNC-DATA-01-0597 : To verify the selection focus when song is selected from top of the list</span>
+<ul class="nested">
+<li>
+<span class="caret backgroundPass">Switch Control to DUT</span>
+<ul class="nested">
+<li class="pass">(SET_DEVICE, Success::Command executed successfully)</li>
+<li class="pass">(WAIT, Success::Command execution successful!!)</li>
+</ul>
+</li>
+<li>
+<span class="caret backgroundPass">Go to Homescreen</span>
+<ul class="nested">
+<li class="pass">(SET_HOME, Success::Command executed successfully)</li>
+<li class="pass">(WAIT, Success::Command execution successful!!)</li>
+</ul>
+</li>
+<li>
+<span class="caret backgroundPass">Go to Next Applications</span>
+<ul class="nested">
+<li class="pass">(CLICK, Success::Clicked on co-ordinates X=1819, Y=390)</li>
+<li class="pass">(WAIT, Success::Command execution successful!!)</li>
+</ul>
+</li>
+<li>
+<span class="caret backgroundPass">Launch USB Audio Application</span>
+<ul class="nested">
+<li class="pass">(CLICK, Success::Clicked on co-ordinates X=500, Y=600)</li>
+<li class="pass">(WAIT, Success::Command execution successful!!)</li>
+</ul>
+</li>
+<li>
+<span class="caret backgroundPass">Connect Device to Port 2</span>
+<ul class="nested">
+<li class="pass">(USB_INSERT, Success::Command executed successfuly)</li>
+</ul>
+</li>
+<li>
+<span class="caret backgroundPass">Wait for 30 Seconds</span>
+<ul class="nested">
+<li class="pass">(WAIT, Success::Command execution successful!!)</li>
+</ul>
+</li>
+<li>
+<span class="caret backgroundPass">Go to Browse</span>
+<ul class="nested">
+<li class="pass">(CLICK, Success::Clicked on co-ordinates X=136, Y=950)</li>
+<li class="pass">(WAIT, Success::Command execution successful!!)</li>
+</ul>
+</li>
+<li>
+<span class="caret backgroundPass">Go to Music</span>
+<ul class="nested">
+<li class="pass">(CLICK, Success::Clicked on co-ordinates X=628, Y=396)</li>
+<li class="pass">(WAIT, Success::Command execution successful!!)</li>
+</ul>
+</li>
+<li>
+<span class="caret backgroundPass">Go to Songs</span>
+<ul class="nested">
+<li class="pass">(CLICK_BY_TEXT, Success::Clicked on text (Songs))</li>
+<li class="pass">(WAIT, Success::Command execution successful!!)</li>
+</ul>
+</li>
+<li>
+<span class="caret backgroundPass">Play Second Song from All Song List</span>
+<ul class="nested">
+<li class="pass">(CLICK, Success::Clicked on co-ordinates X=190, Y=240)</li>
+<li class="pass">(CLICK, Success::Clicked on co-ordinates X=595, Y=380)</li>
+<li class="pass">(WAIT, Success::Command execution successful!!)</li>
+</ul>
+</li>
+<li>
+<span class="caret backgroundPass">Validate Second Song is Playing from Song List</span>
+<ul class="nested">
+<li class="pass">(IMAGE_GRAB, Success::Command executed successfully)</li>
+<li class="pass">(WAIT, Success::Command execution successful!!)</li>
+<li class="pass">(COMPARE_SCREEN_FOR_TEXT, Success::
+ ROI1:PASS: Text on Image is Similar;
+
+ ROI2:PASS: Text on Image is Similar;
+
+ ROI3:PASS: Text on Image is Similar)</li>
+<li class="pass">(COMPARE_SCREEN_SECTION, Success::
+ ROI1:Pass: Section Found on Screen;
+
+ ROI2:Pass: Section Found on Screen;
+
+ ROI3:Pass: Section Found on Screen;
+
+ ROI4:Pass: Section Found on Screen)</li>
+</ul>
+</li>
+<li>
+<span class="caret backgroundPass">Go to Browse</span>
+<ul class="nested">
+<li class="pass">(CLICK, Success::Clicked on co-ordinates X=136, Y=950)</li>
+<li class="pass">(WAIT, Success::Command execution successful!!)</li>
+</ul>
+</li>
+<li>
+<span class="caret backgroundPass">Go to Music</span>
+<ul class="nested">
+<li class="pass">(CLICK, Success::Clicked on co-ordinates X=628, Y=396)</li>
+<li class="pass">(WAIT, Success::Command execution successful!!)</li>
+</ul>
+</li>
+<li>
+<span class="caret backgroundPass">Go to Songs</span>
+<ul class="nested">
+<li class="pass">(CLICK_BY_TEXT, Success::Clicked on text (Songs))</li>
+<li class="pass">(WAIT, Success::Command execution successful!!)</li>
+</ul>
+</li>
+<li>
+<span class="caret backgroundPass">Validate Focus is Set on First Song from All Songs List</span>
+<ul class="nested">
+<li class="pass">(IMAGE_GRAB, Success::Command executed successfully)</li>
+<li class="pass">(WAIT, Success::Command execution successful!!)</li>
+<li class="pass">(COMPARE_SCREEN_SECTION, Success::
+ ROI1:Pass: Section Found on Screen)</li>
+<li class="pass">(COMPARE_SCREEN_FOR_TEXT, Success::
+ ROI1:PASS: Text on Image is Similar)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="data">
+<td>Demo Test Pack</td><td>1</td><td>FNC-SPCAA-01-0160</td><td>FNC-SPCAA-01-0160:To verify android auto is connected when the content of display is confirmed</td><td>2020.04.08 at 17:42:38</td><td>2020.04.08 at 17:43:23</td><td>00:00:45</td><td style="color: green;"><b>Pass</b></td><td><a onclick="sendMessage('file:/D:/KITE_ASSETS/KITE_GOLDEN_IMAGES/Android_Auto_connected.png\\,file:/D:/KITE_ASSETS/KITE_ACTUAL_IMAGES/ActualImages_08_04_20/FNC-SPCAA-01-0160_08_04_20_174237/Android_Auto_connected_08_04_20_17_43_21_789.png\\,\n ROI1:Pass: Section Found on Screen;\n\n ROI2:Pass: Section Found on Screen;\n\n ROI3:Pass: Section Found on Screen;\n\n ROI4:Pass: Section Found on Screen;\n\n ROI5:Pass: Section Found on Screen;\n\n ROI6:Pass: Section Found on Screen;\n\n ROI7:Pass: Section Found on Screen;\n\n ROI8:Pass: Section Found on Screen\\,\r\
+ ROI1:100;\r\
+\r\
+ ROI2:100;\r\
+\r\
+ ROI3:100;\r\
+\r\
+ ROI4:100;\r\
+\r\
+ ROI5:100;\r\
+\r\
+ ROI6:100;\r\
+\r\
+ ROI7:100;\r\
+\r\
+ ROI8:100\\,540;26;194;256:769;24;244;261:1043;21;199;258:1299;34;223;237:1304;306;234;229:1046;312;218;232:766;301;252;240:540;312;207;240')" href="javascript:void(0);">
+			View Results
+		</a></td><td>
+<ul id="myUL">
+<li>
+<span class="caret">FNC-SPCAA-01-0160:To verify android auto is connected when the content of display is confirmed</span>
+<ul class="nested">
+<li>
+<span class="caret backgroundPass">Switch Control to DUT</span>
+<ul class="nested">
+<li class="pass">(SET_DEVICE, Success::Command executed successfully)</li>
+<li class="pass">(WAIT, Success::Command execution successful!!)</li>
+</ul>
+</li>
+<li>
+<span class="caret backgroundPass">Go to Homescreen</span>
+<ul class="nested">
+<li class="pass">(SET_HOME, Success::Command executed successfully)</li>
+<li class="pass">(WAIT, Success::Command execution successful!!)</li>
+</ul>
+</li>
+<li>
+<span class="caret backgroundPass">Connect Device to Port 1</span>
+<ul class="nested">
+<li class="pass">(USB_INSERT, Success::Command executed successfuly)</li>
+</ul>
+</li>
+<li>
+<span class="caret backgroundPass">Launch Setting Application</span>
+<ul class="nested">
+<li class="pass">(CLICK, Success::Clicked on co-ordinates X=1100, Y=250)</li>
+<li class="pass">(WAIT, Success::Command execution successful!!)</li>
+</ul>
+</li>
+<li>
+<span class="caret backgroundPass">Scroll Down List by One Page</span>
+<ul class="nested">
+<li class="pass">(CLICK, Success::Clicked on co-ordinates X=41, Y=959)</li>
+<li class="pass">(WAIT, Success::Command execution successful!!)</li>
+</ul>
+</li>
+<li>
+<span class="caret backgroundPass">Go to Smarphone Connection</span>
+<ul class="nested">
+<li class="pass">(CLICK, Success::Clicked on co-ordinates X=523, Y=952)</li>
+<li class="pass">(WAIT, Success::Command execution successful!!)</li>
+</ul>
+</li>
+<li>
+<span class="caret backgroundPass">Go to Android Auto</span>
+<ul class="nested">
+<li class="pass">(CLICK, Success::Clicked on co-ordinates X=482, Y=345)</li>
+<li class="pass">(WAIT, Success::Command execution successful!!)</li>
+</ul>
+</li>
+<li>
+<span class="caret backgroundPass">Go to Connected Device 1</span>
+<ul class="nested">
+<li class="pass">(CLICK, Success::Clicked on co-ordinates X=605, Y=308)</li>
+<li class="pass">(WAIT, Success::Command execution successful!!)</li>
+</ul>
+</li>
+<li>
+<span class="caret backgroundPass">Go to Delete Device </span>
+<ul class="nested">
+<li class="pass">(CLICK, Success::Clicked on co-ordinates X=1696, Y=137)</li>
+<li class="pass">(WAIT, Success::Command execution successful!!)</li>
+</ul>
+</li>
+<li>
+<span class="caret backgroundPass">Select Yes when Delete Smartphone connection Display</span>
+<ul class="nested">
+<li class="pass">(CLICK, Success::Clicked on co-ordinates X=818, Y=637)</li>
+<li class="pass">(WAIT, Success::Command execution successful!!)</li>
+</ul>
+</li>
+<li>
+<span class="caret backgroundPass">Connect Device to Port 3</span>
+<ul class="nested">
+<li class="pass">(USB_INSERT, Success::Command executed successfuly)</li>
+</ul>
+</li>
+<li>
+<span class="caret backgroundPass">Wait for 10 Seconds</span>
+<ul class="nested">
+<li class="pass">(WAIT, Success::Command execution successful!!)</li>
+</ul>
+</li>
+<li>
+<span class="caret backgroundPass">Enable Android Auto</span>
+<ul class="nested">
+<li class="pass">(CLICK, Success::Clicked on co-ordinates X=793, Y=907)</li>
+<li class="pass">(WAIT, Success::Command execution successful!!)</li>
+</ul>
+</li>
+<li>
+<span class="caret backgroundPass">Wait for 10 Seconds</span>
+<ul class="nested">
+<li class="pass">(WAIT, Success::Command execution successful!!)</li>
+</ul>
+</li>
+<li>
+<span class="caret backgroundPass">Go to Projection Home</span>
+<ul class="nested">
+<li class="pass">(CLICK, Success::Clicked on co-ordinates X=279, Y=946)</li>
+<li class="pass">(WAIT, Success::Command execution successful!!)</li>
+</ul>
+</li>
+<li>
+<span class="caret backgroundPass">Validate Android Auto is Connected</span>
+<ul class="nested">
+<li class="pass">(IMAGE_GRAB, Success::Command executed successfully)</li>
+<li class="pass">(COMPARE_SCREEN_SECTION, Success::
+ ROI1:Pass: Section Found on Screen;
+
+ ROI2:Pass: Section Found on Screen;
+
+ ROI3:Pass: Section Found on Screen;
+
+ ROI4:Pass: Section Found on Screen;
+
+ ROI5:Pass: Section Found on Screen;
+
+ ROI6:Pass: Section Found on Screen;
+
+ ROI7:Pass: Section Found on Screen;
+
+ ROI8:Pass: Section Found on Screen)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="data">
+<td>Demo Test Pack</td><td>1</td><td>FNC-AVC-05-0136</td><td>FNC-AVC-05-0136:To Verify PLAY PASUE and Time bar button Operation, when USB-Music source is connected</td><td>2020.04.08 at 17:43:25</td><td>2020.04.08 at 17:44:31</td><td>00:01:06</td><td style="color: green;"><b>Pass</b></td><td><a onclick="sendMessage('file:/D:/KITE_ASSETS/KITE_GOLDEN_IMAGES/Pause_State_Media_Player.png\\,file:/D:/KITE_ASSETS/KITE_ACTUAL_IMAGES/ActualImages_08_04_20/FNC-AVC-05-0136_08_04_20_1743661/Pause_State_Media_Player_08_04_20_17_44_24_145.png\\,\n ROI1:Pass: Section Found on Screen\\,\r\
+ ROI1:100\\,1009;634;101;74\\;file:/D:/KITE_ASSETS/KITE_GOLDEN_IMAGES/Play_State_Media_Player.png\\,file:/D:/KITE_ASSETS/KITE_ACTUAL_IMAGES/ActualImages_08_04_20/FNC-AVC-05-0136_08_04_20_1743661/Play_State_Media_Player_08_04_20_17_44_27_610.png\\,\n ROI1:Pass: Section Found on Screen\\,\r\
+ ROI1:100\\,982;632;165;74\\;file:/D:/KITE_ASSETS/KITE_GOLDEN_IMAGES/Track_Bar_Song_Playing_from_Middle.png\\,file:/D:/KITE_ASSETS/KITE_ACTUAL_IMAGES/ActualImages_08_04_20/FNC-AVC-05-0136_08_04_20_1743661/Track_Bar_Song_Playing_from_Middle_08_04_20_17_44_31_026.png\\,\n ROI1:Pass: Section Found on Screen\\,\r\
+ ROI1:99\\,319;397;1288;85')" href="javascript:void(0);">
+			View Results
+		</a></td><td>
+<ul id="myUL">
+<li>
+<span class="caret">FNC-AVC-05-0136:To Verify PLAY PASUE and Time bar button Operation, when USB-Music source is connected</span>
+<ul class="nested">
+<li>
+<span class="caret backgroundPass">Switch Control to DUT</span>
+<ul class="nested">
+<li class="pass">(SET_DEVICE, Success::Command executed successfully)</li>
+<li class="pass">(WAIT, Success::Command execution successful!!)</li>
+</ul>
+</li>
+<li>
+<span class="caret backgroundPass">Go to Homescreen</span>
+<ul class="nested">
+<li class="pass">(SET_HOME, Success::Command executed successfully)</li>
+<li class="pass">(WAIT, Success::Command execution successful!!)</li>
+</ul>
+</li>
+<li>
+<span class="caret backgroundPass">Go to Next Applications</span>
+<ul class="nested">
+<li class="pass">(CLICK, Success::Clicked on co-ordinates X=1819, Y=390)</li>
+<li class="pass">(WAIT, Success::Command execution successful!!)</li>
+</ul>
+</li>
+<li>
+<span class="caret backgroundPass">Launch USB Audio Application</span>
+<ul class="nested">
+<li class="pass">(CLICK, Success::Clicked on co-ordinates X=500, Y=600)</li>
+<li class="pass">(WAIT, Success::Command execution successful!!)</li>
+</ul>
+</li>
+<li>
+<span class="caret backgroundPass">Connect Device to Port 2</span>
+<ul class="nested">
+<li class="pass">(USB_INSERT, Success::Command executed successfuly)</li>
+</ul>
+</li>
+<li>
+<span class="caret backgroundPass">Wait for 30 Seconds</span>
+<ul class="nested">
+<li class="pass">(WAIT, Success::Command execution successful!!)</li>
+</ul>
+</li>
+<li>
+<span class="caret backgroundPass">Go to Browse</span>
+<ul class="nested">
+<li class="pass">(CLICK, Success::Clicked on co-ordinates X=136, Y=950)</li>
+<li class="pass">(WAIT, Success::Command execution successful!!)</li>
+</ul>
+</li>
+<li>
+<span class="caret backgroundPass">Go to Music</span>
+<ul class="nested">
+<li class="pass">(CLICK, Success::Clicked on co-ordinates X=628, Y=396)</li>
+<li class="pass">(WAIT, Success::Command execution successful!!)</li>
+</ul>
+</li>
+<li>
+<span class="caret backgroundPass">Go to Songs</span>
+<ul class="nested">
+<li class="pass">(CLICK_BY_TEXT, Success::Clicked on text (Songs))</li>
+<li class="pass">(WAIT, Success::Command execution successful!!)</li>
+</ul>
+</li>
+<li>
+<span class="caret backgroundPass">Play First Song from Songs List</span>
+<ul class="nested">
+<li class="pass">(CLICK, Success::Clicked on co-ordinates X=190, Y=240)</li>
+<li class="pass">(CLICK, Success::Clicked on co-ordinates X=352, Y=294)</li>
+<li class="pass">(WAIT, Success::Command execution successful!!)</li>
+</ul>
+</li>
+<li>
+<span class="caret backgroundPass">Pause Song from Media Player</span>
+<ul class="nested">
+<li class="pass">(CLICK, Success::Clicked on co-ordinates X=950, Y=950)</li>
+<li class="pass">(WAIT, Success::Command execution successful!!)</li>
+</ul>
+</li>
+<li>
+<span class="caret backgroundPass">Validate Pause State of Song</span>
+<ul class="nested">
+<li class="pass">(IMAGE_GRAB, Success::Command executed successfully)</li>
+<li class="pass">(COMPARE_SCREEN_SECTION, Success::
+ ROI1:Pass: Section Found on Screen)</li>
+</ul>
+</li>
+<li>
+<span class="caret backgroundPass">Play Song from Media Player</span>
+<ul class="nested">
+<li class="pass">(CLICK, Success::Clicked on co-ordinates X=950, Y=950)</li>
+<li class="pass">(WAIT, Success::Command execution successful!!)</li>
+</ul>
+</li>
+<li>
+<span class="caret backgroundPass">Validate Play State of Song</span>
+<ul class="nested">
+<li class="pass">(IMAGE_GRAB, Success::Command executed successfully)</li>
+<li class="pass">(WAIT, Success::Command execution successful!!)</li>
+<li class="pass">(COMPARE_SCREEN_SECTION, Success::
+ ROI1:Pass: Section Found on Screen)</li>
+</ul>
+</li>
+<li>
+<span class="caret backgroundPass">Select Track Progress Bar from Middle</span>
+<ul class="nested">
+<li class="pass">(CLICK, Success::Clicked on co-ordinates X=950, Y=700)</li>
+<li class="pass">(WAIT, Success::Command execution successful!!)</li>
+</ul>
+</li>
+<li>
+<span class="caret backgroundPass">Validate Track Bar when Song is Playing from Middle  </span>
+<ul class="nested">
+<li class="pass">(IMAGE_GRAB, Success::Command executed successfully)</li>
+<li class="pass">(COMPARE_SCREEN_SECTION, Success::
+ ROI1:Pass: Section Found on Screen)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="data">
+<td>Demo Test Pack</td><td>1</td><td>FNC-HLA-01-0355</td><td>FNC-HLA-01-0355:To verify the Cancel the Voice call Function</td><td>2020.04.08 at 17:44:32</td><td>2020.04.08 at 17:45:25</td><td>00:00:53</td><td style="color: green;"><b>Pass</b></td><td><a onclick="sendMessage('file:/D:/KITE_ASSETS/KITE_GOLDEN_IMAGES/HLA_Call_Connected.png\\,file:/D:/KITE_ASSETS/KITE_ACTUAL_IMAGES/ActualImages_08_04_20/FNC-HLA-01-0355_08_04_20_1744765/HLA_Call_Connected_08_04_20_17_45_09_538.png\\,\n ROI1:PASS: Text on Image is Similar\\,\r\
+ ROI1:100.0\\,370;88;1211;88\\;file:/D:/KITE_ASSETS/KITE_GOLDEN_IMAGES/HLA_Call_Connected.png\\,file:/D:/KITE_ASSETS/KITE_ACTUAL_IMAGES/ActualImages_08_04_20/FNC-HLA-01-0355_08_04_20_1744765/HLA_Call_Connected_08_04_20_17_45_09_538.png\\,\n ROI1:Pass: Section Found on Screen;\n\n ROI2:Pass: Section Found on Screen\\,\r\
+ ROI1:100;\r\
+\r\
+ ROI2:100\\,761;586;191;130:963;586;173;133\\;file:/D:/KITE_ASSETS/KITE_GOLDEN_IMAGES/HLA_Call_Cancel_Screen.png\\,file:/D:/KITE_ASSETS/KITE_ACTUAL_IMAGES/ActualImages_08_04_20/FNC-HLA-01-0355_08_04_20_1744765/HLA_Call_Cancel_Screen_08_04_20_17_45_15_331.png\\,\n ROI1:PASS: Text on Image is Similar;\n\n ROI2:PASS: Text on Image is Similar;\n\n ROI3:PASS: Text on Image is Similar\\,\r\
+ ROI1:100.0;\r\
+\r\
+ ROI2:100.0;\r\
+\r\
+ ROI3:100.0\\,599;253;695;144:740;413;149;48:1003;421;194;42\\;file:/D:/KITE_ASSETS/KITE_GOLDEN_IMAGES/Home.png\\,file:/D:/KITE_ASSETS/KITE_ACTUAL_IMAGES/ActualImages_08_04_20/FNC-HLA-01-0355_08_04_20_1744765/Home_08_04_20_17_45_24_821.png\\,\n ROI1:Pass: Section Found on Screen;\n\n ROI2:Pass: Section Found on Screen;\n\n ROI3:Pass: Section Found on Screen\\,\r\
+ ROI1:100;\r\
+\r\
+ ROI2:100;\r\
+\r\
+ ROI3:100\\,335;104;1254;525:356;637;274;77:844;650;221;50')" href="javascript:void(0);">
+			View Results
+		</a></td><td>
+<ul id="myUL">
+<li>
+<span class="caret">FNC-HLA-01-0355:To verify the Cancel the Voice call Function</span>
+<ul class="nested">
+<li>
+<span class="caret backgroundPass">Switch Control to DUT</span>
+<ul class="nested">
+<li class="pass">(SET_DEVICE, Success::Command executed successfully)</li>
+<li class="pass">(WAIT, Success::Command execution successful!!)</li>
+</ul>
+</li>
+<li>
+<span class="caret backgroundPass">Go to Homescreen</span>
+<ul class="nested">
+<li class="pass">(SET_HOME, Success::Command executed successfully)</li>
+<li class="pass">(WAIT, Success::Command execution successful!!)</li>
+</ul>
+</li>
+<li>
+<span class="caret backgroundPass">SET Crush</span>
+<ul class="nested">
+<li class="pass">(SEND_CAN_MSG_BY_ID, Success::CAN ID : 92F85C50 40 00 00 00 00 00, VectorXL CAN DATA is Transmitted, VectorXL CAN DATA Queue is Flushed,No Error)</li>
+<li class="pass">(WAIT, Success::Command execution successful!!)</li>
+</ul>
+</li>
+<li>
+<span class="caret backgroundPass">Dial HondaLink Assist</span>
+<ul class="nested">
+<li class="pass">(CLICK, Success::Clicked on co-ordinates X=749, Y=912)</li>
+<li class="pass">(WAIT, Success::Command execution successful!!)</li>
+</ul>
+</li>
+<li>
+<span class="caret backgroundPass">Wait for 30 Seconds</span>
+<ul class="nested">
+<li class="pass">(WAIT, Success::Command execution successful!!)</li>
+</ul>
+</li>
+<li>
+<span class="caret backgroundPass">Validate Call Connected to Operator</span>
+<ul class="nested">
+<li class="pass">(IMAGE_GRAB, Success::Command executed successfully)</li>
+<li class="pass">(COMPARE_SCREEN_FOR_TEXT, Success::
+ ROI1:PASS: Text on Image is Similar)</li>
+<li class="pass">(COMPARE_SCREEN_SECTION, Success::
+ ROI1:Pass: Section Found on Screen;
+
+ ROI2:Pass: Section Found on Screen)</li>
+</ul>
+</li>
+<li>
+<span class="caret backgroundPass">Cancel HondaLink Assist</span>
+<ul class="nested">
+<li class="pass">(CLICK, Success::Clicked on co-ordinates X=1165, Y=918)</li>
+<li class="pass">(WAIT, Success::Command execution successful!!)</li>
+</ul>
+</li>
+<li>
+<span class="caret backgroundPass">Vaildate Call Cancel Confirmation Page</span>
+<ul class="nested">
+<li class="pass">(IMAGE_GRAB, Success::Command executed successfully)</li>
+<li class="pass">(COMPARE_SCREEN_FOR_TEXT, Success::
+ ROI1:PASS: Text on Image is Similar;
+
+ ROI2:PASS: Text on Image is Similar;
+
+ ROI3:PASS: Text on Image is Similar)</li>
+</ul>
+</li>
+<li>
+<span class="caret backgroundPass">Select Cancel when Continue to Cancel Emergency call</span>
+<ul class="nested">
+<li class="pass">(CLICK, Success::Clicked on co-ordinates X=756, Y=646)</li>
+<li class="pass">(WAIT, Success::Command execution successful!!)</li>
+</ul>
+</li>
+<li>
+<span class="caret backgroundPass">Validate Default Homescreen</span>
+<ul class="nested">
+<li class="pass">(IMAGE_GRAB, Success::Command executed successfully)</li>
+<li class="pass">(COMPARE_SCREEN_SECTION, Success::
+ ROI1:Pass: Section Found on Screen;
+
+ ROI2:Pass: Section Found on Screen;
+
+ ROI3:Pass: Section Found on Screen)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="data">
+<td>Demo Test Pack</td><td>1</td><td>FNC-SYS-01-0015</td><td>FNC-SYS-01-0015:To Verify Error message,When Automatic Set Date and Time Setting is ON</td><td>2020.04.08 at 17:45:29</td><td>2020.04.08 at 17:45:45</td><td>00:00:16</td><td style="color: red;"><b>Fail</b></td><td><a onclick="sendMessage('file:/D:/KITE_ASSETS/KITE_GOLDEN_IMAGES/Error Message.png\\,file:/D:/KITE_ASSETS/KITE_ACTUAL_IMAGES/ActualImages_08_04_20/FNC-SYS-01-0015_08_04_20_1745296/Error Message_08_04_20_17_45_44_605.png\\,FAIL: Golden file not found\\,0.0\\,529;538;910;181')" href="javascript:void(0);">
+			View Results
+		</a></td><td>
+<ul id="myUL">
+<li>
+<span class="caret">FNC-SYS-01-0015:To Verify Error message,When Automatic Set Date and Time Setting is ON</span>
+<ul class="nested">
+<li>
+<span class="caret backgroundPass">Switch Control to DUT</span>
+<ul class="nested">
+<li class="pass">(SET_DEVICE, Success::Command executed successfully)</li>
+<li class="pass">(WAIT, Success::Command execution successful!!)</li>
+</ul>
+</li>
+<li>
+<span class="caret backgroundPass">Go to Homescreen</span>
+<ul class="nested">
+<li class="pass">(SET_HOME, Success::Command executed successfully)</li>
+<li class="pass">(WAIT, Success::Command execution successful!!)</li>
+</ul>
+</li>
+<li>
+<span class="caret backgroundPass">Launch Setting Application</span>
+<ul class="nested">
+<li class="pass">(CLICK, Success::Clicked on co-ordinates X=1100, Y=250)</li>
+<li class="pass">(WAIT, Success::Command execution successful!!)</li>
+</ul>
+</li>
+<li>
+<span class="caret backgroundPass">Scroll Up List by One Page</span>
+<ul class="nested">
+<li class="pass">(CLICK, Success::Clicked on co-ordinates X=41, Y=217)</li>
+<li class="pass">(WAIT, Success::Command execution successful!!)</li>
+</ul>
+</li>
+<li>
+<span class="caret backgroundPass">Go to System Setting</span>
+<ul class="nested">
+<li class="pass">(CLICK, Success::Clicked on co-ordinates X=141, Y=223)</li>
+<li class="pass">(WAIT, Success::Command execution successful!!)</li>
+</ul>
+</li>
+<li>
+<span class="caret backgroundPass">Go to Date and Time</span>
+<ul class="nested">
+<li class="pass">(CLICK, Success::Clicked on co-ordinates X=141, Y=223)</li>
+<li class="pass">(WAIT, Success::Command execution successful!!)</li>
+</ul>
+</li>
+<li>
+<span class="caret backgroundPass">Go to Set Date and Time</span>
+<ul class="nested">
+<li class="pass">(CLICK, Success::Clicked on co-ordinates X=141, Y=223)</li>
+<li class="pass">(WAIT, Success::Command execution successful!!)</li>
+</ul>
+</li>
+<li>
+<span class="caret backgroundPass">Go to Set Time</span>
+<ul class="nested">
+<li class="pass">(CLICK, Success::Clicked on co-ordinates X=141, Y=420)</li>
+<li class="pass">(WAIT, Success::Command execution successful!!)</li>
+</ul>
+</li>
+<li>
+<span class="caret backgroundFail">Validate Error Message if Set Time is Disabled </span>
+<ul class="nested">
+<li class="pass">(CAPTURE_SCREEN, Success::Command executed successfully)</li>
+<li class="pass">(WAIT, Success::Command execution successful!!)</li>
+<li class="Fail">(COMPARE_SCREEN_FOR_TEXT, Failure::FAIL: Golden file not found)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</body>
+</html>
